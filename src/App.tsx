@@ -22,7 +22,9 @@ import {
 export default function App() {
   const { transactions } = useTransactions();
   const [open, setOpen] = useState(false);
-  const [selectedMonth, setSelectedMonth] = useState(() => getMonthKey(new Date()));
+  const [selectedMonth, setSelectedMonth] = useState(() =>
+    getMonthKey(new Date()),
+  );
 
   const monthOptions = useMemo(() => {
     const currentMonth = getMonthKey(new Date());
@@ -31,10 +33,7 @@ export default function App() {
     );
   }, []);
 
-  const balance = useMemo(
-    () => getTotalBalance(transactions),
-    [transactions],
-  );
+  const balance = useMemo(() => getTotalBalance(transactions), [transactions]);
   const income = useMemo(
     () => getComparison(transactions, selectedMonth, "income"),
     [transactions, selectedMonth],
@@ -71,7 +70,9 @@ export default function App() {
       <div className="mx-auto max-w-7xl">
         <header className="mb-6 flex flex-wrap items-center justify-between gap-4">
           <div>
-            <p className="text-sm font-medium text-[#55615B]">Finance tracker</p>
+            <p className="text-sm font-medium text-[#55615B]">
+              Finance tracker
+            </p>
             <h1 className="text-[26px] font-bold">Dashboard</h1>
           </div>
           <div className="flex items-center gap-2">
@@ -117,8 +118,14 @@ export default function App() {
                 </p>
               </div>
               <div className="mt-3 flex gap-4 text-xs text-[#66736D]">
-                <span><span className="mr-1 inline-block h-2 w-2 rounded-full bg-[#2F7F68]" />Income</span>
-                <span><span className="mr-1 inline-block h-2 w-2 rounded-full bg-[#D97745]" />Expenses</span>
+                <span>
+                  <span className="mr-1 inline-block h-2 w-2 rounded-full bg-[#2F7F68]" />
+                  Income
+                </span>
+                <span>
+                  <span className="mr-1 inline-block h-2 w-2 rounded-full bg-[#D97745]" />
+                  Expenses
+                </span>
               </div>
               <IncomeExpenseChart data={monthlySeries} />
             </section>
@@ -150,7 +157,10 @@ export default function App() {
             aria-labelledby="all-transactions-heading"
             className="scroll-mt-6 rounded-2xl border border-[#E3E6E1] bg-white p-5"
           >
-            <h2 id="all-transactions-heading" className="mb-3 text-base font-semibold">
+            <h2
+              id="all-transactions-heading"
+              className="mb-3 text-base font-semibold"
+            >
               All transactions
             </h2>
             <TransactionTable />
