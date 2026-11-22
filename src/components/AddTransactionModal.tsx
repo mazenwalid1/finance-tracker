@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { useTransactions } from "../context/TransactionsContext";
+import { useTransactions } from "../context/transactions-context";
 
 const schema = z.object({
   type: z.enum(["income", "expense"]),

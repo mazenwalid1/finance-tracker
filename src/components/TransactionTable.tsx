@@ -1,4 +1,4 @@
-import { useTransactions } from "../context/TransactionsContext";
+import { useTransactions } from "../context/transactions-context";
 import { formatDate, formatMoney } from "../lib/format";
 
 export function TransactionTable() {

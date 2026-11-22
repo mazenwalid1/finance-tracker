@@ -1,14 +1,10 @@
-import { createContext, useContext, type ReactNode } from "react";
+import { type ReactNode } from "react";
 import { useLocalStorage } from "../hooks/useLocalStorage";
 import type { Transaction } from "../types";
-
-type Ctx = {
-  transactions: Transaction[];
-  add: (t: Omit<Transaction, "id">) => void;
-  remove: (id: string) => void;
-};
-
-const TransactionsContext = createContext<Ctx | null>(null);
+import {
+  TransactionsContext,
+  type TransactionsContextValue,
+} from "./transactions-context";
 
 export function TransactionsProvider({ children }: { children: ReactNode }) {
   const [transactions, setTransactions] = useLocalStorage<Transaction[]>(
@@ -16,10 +12,10 @@ export function TransactionsProvider({ children }: { children: ReactNode }) {
     [],
   );
 
-  const add: Ctx["add"] = (t) =>
+  const add: TransactionsContextValue["add"] = (t) =>
     setTransactions((prev) => [{ ...t, id: crypto.randomUUID() }, ...prev]);
 
-  const remove: Ctx["remove"] = (id) =>
+  const remove: TransactionsContextValue["remove"] = (id) =>
     setTransactions((prev) => prev.filter((t) => t.id !== id));
 
   return (
@@ -27,11 +23,4 @@ export function TransactionsProvider({ children }: { children: ReactNode }) {
       {children}
     </TransactionsContext.Provider>
   );
-}
-
-export function useTransactions() {
-  const ctx = useContext(TransactionsContext);
-  if (!ctx)
-    throw new Error("useTransactions must be used inside TransactionsProvider");
-  return ctx;
 }
