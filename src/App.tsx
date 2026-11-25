@@ -20,7 +20,12 @@ import {
 } from "./features/analytics/utils/financeCalculations";
 
 export default function App() {
-  const { transactions } = useTransactions();
+  const {
+    transactions,
+    storageError,
+    canResetStorage,
+    clearUnreadableStorage,
+  } = useTransactions();
   const [open, setOpen] = useState(false);
   const [selectedMonth, setSelectedMonth] = useState(() =>
     getMonthKey(new Date()),
@@ -100,6 +105,24 @@ export default function App() {
             </button>
           </div>
         </header>
+
+        {storageError && (
+          <div
+            role="alert"
+            className="mb-6 flex flex-wrap items-center justify-between gap-3 rounded-xl border border-[#D97745] bg-[#FFF7F2] px-4 py-3 text-sm text-[#7A3F20]"
+          >
+            <p>{storageError}</p>
+            {canResetStorage && (
+              <button
+                type="button"
+                onClick={clearUnreadableStorage}
+                className="min-h-10 rounded-lg border border-[#D97745] px-3 font-semibold"
+              >
+                Replace unreadable saved data
+              </button>
+            )}
+          </div>
+        )}
 
         <div className="space-y-6">
           <SummaryCards

@@ -144,14 +144,16 @@ export const getFinancialInsights = (
         detail: "You kept this share of your income this month.",
         tone: "positive",
       });
-    } else if (current.savings < 0) {
-      insights.push({
-        id: "overspending",
-        title: "Expenses exceeded income",
-        detail: "Your spending this month was higher than your income.",
-        tone: "negative",
-      });
     }
+  }
+
+  if (current.expenses > current.income) {
+    insights.push({
+      id: "overspending",
+      title: "Expenses exceeded income",
+      detail: "Your spending this month was higher than your income.",
+      tone: "negative",
+    });
   }
 
   return insights;

@@ -5,6 +5,9 @@ export type TransactionsContextValue = {
   transactions: Transaction[];
   add: (transaction: Omit<Transaction, "id">) => void;
   remove: (id: string) => void;
+  storageError: string | null;
+  canResetStorage: boolean;
+  clearUnreadableStorage: () => void;
 };
 
 export const TransactionsContext =

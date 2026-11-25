@@ -2,7 +2,8 @@ export const formatMoney = (n: number) =>
   new Intl.NumberFormat("en-EG", {
     style: "currency",
     currency: "EGP",
-    maximumFractionDigits: 0,
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
   }).format(n);
 
 export const formatDate = (iso: string) =>
