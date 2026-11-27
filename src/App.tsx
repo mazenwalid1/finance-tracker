@@ -154,7 +154,7 @@ export default function App() {
             </section>
 
             <section className="rounded-2xl border border-[#E3E6E1] bg-white p-5">
-              <h2 className="text-base font-semibold">Spending trends</h2>
+              <h2 className="text-base font-semibold">Monthly spending</h2>
               <p className="mt-1 text-xs text-[#7A857F]">
                 Monthly expense pattern
               </p>
