@@ -5,14 +5,18 @@ export type TransactionsContextValue = {
   transactions: Transaction[];
   add: (transaction: Omit<Transaction, "id">) => void;
   remove: (id: string) => void;
+  storageError: string | null;
+  canResetStorage: boolean;
+  clearUnreadableStorage: () => void;
 };
 
 export const TransactionsContext =
   createContext<TransactionsContextValue | null>(null);
 
 export function useTransactions() {
-  const ctx = useContext(TransactionsContext);
-  if (!ctx)
+  const context = useContext(TransactionsContext);
+  if (!context) {
     throw new Error("useTransactions must be used inside TransactionsProvider");
-  return ctx;
+  }
+  return context;
 }

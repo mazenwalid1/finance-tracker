@@ -3,8 +3,11 @@ import { formatDate, formatMoney } from "../lib/format";
 
 export function TransactionTable() {
   const { transactions, remove } = useTransactions();
+  const sortedTransactions = [...transactions].sort((a, b) =>
+    b.date.localeCompare(a.date),
+  );
 
-  if (transactions.length === 0) {
+  if (sortedTransactions.length === 0) {
     return (
       <p className="text-sm text-[#55615B]">
         No transactions yet. Add your first one.
@@ -25,7 +28,7 @@ export function TransactionTable() {
           </tr>
         </thead>
         <tbody>
-          {transactions.map((t) => (
+          {sortedTransactions.map((t) => (
             <tr key={t.id} className="border-t border-[#E3E6E1]">
               <td className="py-3">{formatDate(t.date)}</td>
               <td>{t.note || "-"}</td>
