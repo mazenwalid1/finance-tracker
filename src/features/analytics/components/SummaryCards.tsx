@@ -77,7 +77,7 @@ export function SummaryCards({
       aria-label="Financial summary"
       className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4"
     >
-      <Card label="Total balance" value={balance} />
+      <Card label="All-time balance" value={balance} />
       <Card label="Monthly income" value={income.current} comparison={income} />
       <Card
         label="Monthly expenses"
@@ -86,7 +86,7 @@ export function SummaryCards({
         positiveIsGood={false}
       />
       <Card
-        label="Net savings"
+        label="Remaining balance"
         value={savings.current}
         comparison={savings}
       />
